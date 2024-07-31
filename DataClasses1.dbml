@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Amir" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=Amir;Integrated Security=True" SettingsObjectName="WindowsFormsApp9.Properties.Settings" SettingsPropertyName="AmirConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Login" Member="Logins">
+    <Type Name="Login" Modifier="Sealed">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Association Name="Login_User" Member="Users" ThisKey="id" OtherKey="id_login" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User" Id="ID1" Modifier="Sealed">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_login" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Family" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Fathername" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="internationalCode" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Login_User" Member="Login" ThisKey="id_login" OtherKey="id" Type="Login" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Function Name="dbo.CheckPassword" Method="CheckPassword">
+    <Parameter Name="Check" Parameter="check" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(30)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Checkusername" Method="Checkusername">
+    <Parameter Name="Check" Parameter="check" Type="System.Boolean" DbType="Bit" Direction="InOut" />
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="NVarChar(30)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DeleteUsers" Method="DeleteUsers">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.FillUsersbyid" Method="FillUsersbyid">
+    <Parameter Name="id_Login" Type="System.Int32" DbType="Int" />
+    <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="dbo.insertLogin" Method="insertLogin">
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(30)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertUsers" Method="InsertUsers">
+    <Parameter Name="id_Login" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="Family" Parameter="family" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="Fathername" Parameter="fathername" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="internationalCode" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UpdateUsers" Method="UpdateUsers">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="Family" Parameter="family" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="Fathername" Parameter="fathername" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="internationalCode" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="Address" Parameter="address" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getloginId" Method="getloginId">
+    <Parameter Name="loginid" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="NVarChar(30)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
